@@ -1,49 +1,39 @@
-import { ArrowRight, Plus } from "../../../svg";
+
 import "./style.css";
-import { stories } from "../../../data/home";
-import Story from "./Story";
-import { useMediaQuery } from "react-responsive";
+import React, { useState } from 'react';
+import ModalComponent from './ModalComponent';
+
 export default function Stories() {
-  const query1175px = useMediaQuery({
-    query: "(max-width: 1175px)",
-  });
-  const query1030px = useMediaQuery({
-    query: "(max-width: 1030px)",
-  });
-  const query960px = useMediaQuery({
-    query: "(max-width: 960px)",
-  });
-  const query885px = useMediaQuery({
-    query: "(max-width: 885px)",
-  });
-  const max = query885px
-    ? 5
-    : query960px
-    ? 4
-    : query1030px
-    ? 5
-    : query1175px
-    ? 4
-    : stories.length;
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
-    <div className="stories">
-      <div className="create_story_card">
-        <img
-          src="../../../images/default_pic.png"
-          alt=""
-          className="create_story_img"
-        />
-        <div className="plus_story">
-          <Plus color="#fff" />
-        </div>
-        <div className="story_create_text">Create Story</div>
-      </div>
-      {stories.slice(0, max).map((story, i) => (
-        <Story story={story} key={i} />
-      ))}
-      <div className="white_circle">
-        <ArrowRight color="#65676b" />
+    <div className="banner">
+    <div className="image-container" onClick={showModal}>
+      <img
+        src="https://res.cloudinary.com/dehk1bcny/image/upload/v1720622234/mn67utwwnloahrlrjlbv.png"
+        alt="Description of image"
+        className="banner_img"
+      />
+      <div className="overlay">
+        <div className="text">Click to open chatbox</div>
       </div>
     </div>
+    <ModalComponent
+      isVisible={isModalVisible}
+      handleOk={handleOk}
+      handleCancel={handleCancel}
+    />
+  </div>
   );
 }

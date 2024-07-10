@@ -1,9 +1,16 @@
-.stories {
+.banner {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(6, 105px);
-  gap: 10px;
   padding: 6px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.banner_img{
+  width: 500px; /* hoặc bất kỳ giá trị nào bạn muốn */
+  height: auto;
+  display: block;
 }
 .create_story_card {
   position: relative;
@@ -101,4 +108,42 @@
   right: -5px;
   box-shadow: 1px 2px var(--shadow-1);
   cursor: pointer;
+}
+
+
+.image-container {
+  position: relative;
+}
+
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Màu nền đen mờ */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.chatbox {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 400px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  z-index: 1000; /* Đảm bảo chatbox nằm trên các phần tử khác */
 }

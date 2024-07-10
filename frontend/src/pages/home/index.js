@@ -9,6 +9,8 @@ import SendVerification from "../../components/home/sendVerification";
 import Stories from "../../components/home/stories";
 import Post from "../../components/post";
 import "./style.css";
+import React from 'react';
+
 export default function Home({ setVisible, posts, loading, getAllPosts }) {
   const { user } = useSelector((state) => ({ ...state }));
   const middle = useRef(null);
@@ -16,13 +18,16 @@ export default function Home({ setVisible, posts, loading, getAllPosts }) {
   useEffect(() => {
     setHeight(middle.current.clientHeight);
   }, [loading, height]);
+  
   return (
     <div className="home" style={{ height: `${height + 150}px` }}>
       <Header page="home" getAllPosts={getAllPosts} />
       <LeftHome user={user} />
       <div className="home_middle" ref={middle}>
-        <Stories />
+
         {user.verified === false && <SendVerification user={user} />}
+        <Stories />
+       
         <CreatePost user={user} setVisible={setVisible} />
         {loading ? (
           <div className="sekelton_loader">
